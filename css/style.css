@@ -1,0 +1,16 @@
+body{
+	width: 80%;
+	margin: 0 auto;
+}
+
+div{
+	width: 40%;
+	margin: 0 auto;
+}
+
+canvas{
+	width: 100%;
+	background-color: green;
+	margin: 10px auto;
+
+}
