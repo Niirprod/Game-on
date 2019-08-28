@@ -1,3 +1,4 @@
+/* Variables table pong */
 var canvas = document.getElementById('canvas1');
 var ctx = canvas.getContext('2d');
 
@@ -10,6 +11,7 @@ var raquette2Height = 10;
 var raquette2Width = 75;
 var raquette2x = 110;
 
+/* Variables balle et comptage faute */
 var x1 = 150;
 var y1 = 30;
 var dx1 = 1;
@@ -34,15 +36,18 @@ var ballRadius40 = 2;
 var ballRadius50 = 2;
 var ballRadius60 = 2;
 
+/* Variables touches de directions */
 var leftPressed = false;
 var rightPressed = false;
 
+/* Variables temps */
 var compsec = 100;
 var tempsArret = setInterval(temps,1000);
 
 document.addEventListener("keydown", keyDown);
 document.addEventListener("keyup", keyUp);
 
+/* Fonctions temps */
 function keyDown(e){
 	if(e.keyCode == 37){
 		leftPressed = true;
@@ -66,6 +71,7 @@ function temps(){
 	texteSeconde();
 }
 
+/* Fonction terrain */
 function ligne(a,b,c,d,e,f){
 	ctx.beginPath();
 	ctx.lineWidth = a;
@@ -79,6 +85,8 @@ function terrain(){
 	ligne('2','purple',15,0,15,420);
 	ligne('2','purple',280,0,280,420);
 }
+
+/* Fonction raquettes */
 function raquette(a,b,c,d,e){
 	ctx.beginPath();
 	ctx.rect(a,b,c,d);
@@ -94,6 +102,7 @@ function raquette2(){
 		raquette1Height, 'yellow');
 }
 
+/* Fonctions balles */
 function ball(a,b,c,d){
 	ctx.beginPath();
 	ctx.arc(a, b, c, 0, Math.PI*2);
@@ -124,6 +133,7 @@ function ball60(){
 	ball(x60, y60 , ballRadius60,'yellow');
 }
 
+/* Fonctions animation raquette */
 function moveRaquette1(){
 	if(leftPressed && raquette1x > 0){
 		raquette1x -= 10;
@@ -133,6 +143,7 @@ function moveRaquette1(){
 	}
 }
 
+/* Fonctions texte temps + texte fin de partie */
 function texte(a,b,c,d,e){
 	ctx.font = a;
 	ctx.fillStyle = b;
@@ -151,7 +162,7 @@ function texteGagne(){
 function textePerdu(){
 	texte ('50px Comic Sans Ms', 'red', 'You Lose', 60, 285);
 }
-
+/* Fonction animation de la balle */
 function rebonBall1(){
 	if(x1 > canvas.width-8 || x1 < ballRadius){
 		dx1 = -dx1;
@@ -189,6 +200,7 @@ function rebonBall1(){
 	}
 }
 
+/* Fonction fin de jeu */
 function gameOver(){
 	if(compsec < 1){
 		clearInterval(tempsArret);
@@ -203,7 +215,8 @@ function gameOver(){
 		dy1 = 0;
 	}
 }
-	
+
+/* Fonction jeu globale + appele de la fonction jeu */	
 function jeu(){
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	terrain();
